@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:jadurjini_user/pages/activity_page.dart';
+import 'package:jadurjini_user/pages/categorypage.dart';
+import 'package:jadurjini_user/pages/first_page.dart';
+import 'package:jadurjini_user/pages/home_page.dart';
+import 'package:jadurjini_user/pages/loginpage.dart';
+import 'package:jadurjini_user/pages/productdetail.dart';
+import 'package:jadurjini_user/pages/profilepage.dart';
+import 'package:jadurjini_user/pages/shopproductpage.dart';
+import 'package:jadurjini_user/pages/shopscatproductspage.dart';
+import 'package:jadurjini_user/pages/signuppage.dart';
+import 'package:jadurjini_user/provider/order_provider.dart';
+import 'package:jadurjini_user/provider/product_provider.dart';
+import 'package:jadurjini_user/provider/shopprovider.dart';
+import 'package:provider/provider.dart';
+
+import 'demo.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => OrderProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ShopProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+        ),
+        initialRoute: FirstPage.routeName,
+        routes: {
+          FirstPage.routeName: (context)=>FirstPage(),
+          HomePage.routeName: (context)=>HomePage(),
+          ActivityPage.routeName: (context)=>ActivityPage(),
+          ProfilePage.routeName: (context)=>ProfilePage(),
+          DemoPage.routeName: (context)=>DemoPage(),
+          LoginPage.routeName: (context)=>LoginPage(),
+          SignUpPage.routeName: (context)=>SignUpPage(),
+          CategoryPage.routeName: (context)=>CategoryPage(),
+          ProductDetailPage.routeName: (context)=>ProductDetailPage(),
+          ShopPage.routename: (context)=>ShopPage(),
+          ShopsCatProPage.routename: (context)=>ShopsCatProPage(),
+        },
+      ),
+    );
+  }
+}
