@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jadurjini_user/pages/activity_page.dart';
+import 'package:jadurjini_user/pages/cartpage.dart';
 import 'package:jadurjini_user/pages/categorypage.dart';
 import 'package:jadurjini_user/pages/first_page.dart';
 import 'package:jadurjini_user/pages/home_page.dart';
@@ -9,14 +10,18 @@ import 'package:jadurjini_user/pages/profilepage.dart';
 import 'package:jadurjini_user/pages/shopproductpage.dart';
 import 'package:jadurjini_user/pages/shopscatproductspage.dart';
 import 'package:jadurjini_user/pages/signuppage.dart';
+import 'package:jadurjini_user/provider/cartprovider.dart';
 import 'package:jadurjini_user/provider/order_provider.dart';
 import 'package:jadurjini_user/provider/product_provider.dart';
 import 'package:jadurjini_user/provider/shopprovider.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'demo.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -37,6 +42,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ShopProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider()..getallCarts(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -56,6 +64,7 @@ class MyApp extends StatelessWidget {
           ProductDetailPage.routeName: (context)=>ProductDetailPage(),
           ShopPage.routename: (context)=>ShopPage(),
           ShopsCatProPage.routename: (context)=>ShopsCatProPage(),
+          CartPage.routename: (context)=>CartPage(),
         },
       ),
     );

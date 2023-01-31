@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:jadurjini_user/pages/first_page.dart';
 
+import '../auth/auth_service.dart';
 import '../utils/colors.dart';
+import '../utils/custom_snack_bar.dart';
 import 'loginpage.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -35,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
               children: [
                 Image.asset('assets/images/logimage.png',height: 350,width: 400,),
                 TextFormField(
-                  controller: emailController,
+                  controller: nameController,
                   decoration:  InputDecoration(
                       prefixIcon: Icon(Icons.person,color: Colors.black,),
                       focusedBorder:OutlineInputBorder(
@@ -50,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 SizedBox(height: 10,),
                 TextFormField(
-                  controller: emailController,
+                  controller: numberController,
                   decoration:  InputDecoration(
                       prefixIcon: Icon(Icons.phone,color: Colors.black,),
                       focusedBorder:OutlineInputBorder(
@@ -114,7 +119,10 @@ class _SignUpPageState extends State<SignUpPage> {
                           BorderRadius.circular(10), // <-- Radius
                         ),
                       ),
-                      onPressed: ()  {},
+                      onPressed: ()  {
+                        EasyLoading.show(status: 'Please wait...');
+                        authenticate();
+                      },
                       child:  Text(
                         'Sign Up',
                         style: TextStyle(color: Colors.white,fontSize: 18),
@@ -133,5 +141,30 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+
+  void authenticate() async {
+    try {
+      AuthService.signUp(emailController.text, passwordController.text)
+          .then(
+            (value) {
+          Navigator.pushReplacementNamed(context, FirstPage.routeName);
+          CustomSnackBar().showSnackBar(
+              context: context,
+              content: 'Sign up Successful',
+              backgroundColor: Colors.green);
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(
+            () {
+              CustomSnackBar().showSnackBar(
+                  context: context,
+                  content: 'Sign up Failed',
+                  backgroundColor: Colors.red);
+          errMsg = e.message!;
+        },
+      );
+    }
   }
 }

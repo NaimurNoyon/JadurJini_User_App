@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jadurjini_user/pages/first_page.dart';
 import 'package:jadurjini_user/pages/home_page.dart';
 import 'package:jadurjini_user/pages/signuppage.dart';
 
+import '../auth/auth_service.dart';
 import '../utils/colors.dart';
+import '../utils/custom_snack_bar.dart';
 import 'categorypage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -15,6 +19,7 @@ class LoginPage extends StatefulWidget {
 }
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
+String errMsg = '';
 String dont="Don't have an account";
 bool visiblepass=false;
 class _LoginPageState extends State<LoginPage> {
@@ -87,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: ()  {
-                        Navigator.pushNamed(context, HomePage.routeName);
+                        logIn();
                       },
                       child:  Text(
                         'Login',
@@ -107,5 +112,27 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void logIn() async {
+    try {
+      await AuthService.logIn(
+          emailController.text, passwordController.text).then((value) {
+        Navigator.pushReplacementNamed(
+            context, FirstPage.routeName);
+        CustomSnackBar().showSnackBar(
+            context: context,
+            content: 'Log in Successful',
+            backgroundColor: Colors.green);
+      });
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        CustomSnackBar().showSnackBar(
+            context: context,
+            content: 'Log in Failed',
+            backgroundColor: Colors.red);
+        errMsg = e.message!;
+      });
+    }
   }
 }

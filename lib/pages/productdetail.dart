@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jadurjini_user/models/cartmodel.dart';
 import 'package:jadurjini_user/models/product_model.dart';
+import 'package:jadurjini_user/pages/cartpage.dart';
+import 'package:jadurjini_user/provider/cartprovider.dart';
+import 'package:provider/provider.dart';
 
 import '../utils/colors.dart';
 import '../utils/strings.dart';
@@ -25,7 +29,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         elevation: 0,
         backgroundColor: Colors.white,
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_bag,color: Colors.black,size: 30,))
+          IconButton(onPressed: (){
+            Navigator.pushNamed(context, CartPage.routename);
+          }, icon: Icon(Icons.shopping_bag,color: Colors.black,size: 30,))
         ],
       ),
       body:Stack(
@@ -168,7 +174,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       padding: EdgeInsets.zero,
                                       shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(20))),
-                                  onPressed: (){},
+                                  onPressed: () {
+                                      addtocart();
+                                  },
                                   child: Ink(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
@@ -219,4 +227,21 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       ),
     );
   }
+ void addtocart() async{
+   final cart = AddCartModel(
+     product_name:selectedproduct.productName!,
+     price: selectedproduct.productPrice!,
+     size: selectedproduct.productSize!,
+     image: selectedproduct.productImage!,
+     quantity: 0,
+     totalprice: 0,
+
+   );
+   print(cart.toString());
+   final status = await Provider
+       .of<CartProvider>(context, listen: false).addcart(cart);
+   if(status){
+     print('Succesfuly Added Question No: ');
+   }
+ }
 }

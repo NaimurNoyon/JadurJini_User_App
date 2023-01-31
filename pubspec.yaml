@@ -40,6 +40,17 @@ dependencies:
   http:
   provider:
   carousel_slider: ^4.2.1
+  firebase_core:
+  firebase_auth:
+  cloud_firestore:
+  firebase_storage:
+  firebase_messaging:
+  flutter_easyloading: ^3.0.5
+  loading_indicator: ^3.1.0
+  google_sign_in: ^5.2.0
+  path:
+  sqflite:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

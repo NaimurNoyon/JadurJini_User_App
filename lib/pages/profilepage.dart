@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jadurjini_user/pages/home_page.dart';
 
 class ProfilePage extends StatefulWidget {
   static const String routeName='/profilepage';
@@ -26,7 +27,8 @@ class _ProfilePageState extends State<ProfilePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
+          Padding(
+            padding:  EdgeInsets.all(100),
             child: Container(
               height: 200,
               width: 200,
