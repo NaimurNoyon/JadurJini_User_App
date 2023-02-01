@@ -105,7 +105,7 @@ class _CartPageState extends State<CartPage> {
                             if(q!=0)
                               q--;
                             provider.updatecartquantity(index+1, q);
-                            int price=(provider.cartlist[index].price-provider.cartlist[index].price).round();
+                            int price=(provider.cartlist[index].totalprice-provider.cartlist[index].price).round();
                             provider.updatecartprice(index+1,price );
 
                           });

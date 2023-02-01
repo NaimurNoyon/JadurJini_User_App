@@ -48,7 +48,7 @@ class _ShopPageState extends State<ShopPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
+              Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
               SizedBox(height: 6,),
               Text(Shopad,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black)),
               SizedBox(height: 6,),
@@ -59,7 +59,7 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("assets/images/offerone.jpg"),
+                        image: AssetImage("assets/images/offersix.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -69,7 +69,7 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("assets/images/offerthree.jpg"),
+                        image: AssetImage("assets/images/offerseven.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -79,7 +79,7 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
                       image: DecorationImage(
-                        image: AssetImage("assets/images/offerfour.jpg"),
+                        image: AssetImage("assets/images/offereight.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -98,55 +98,53 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
               ),
               SizedBox(height: 12,),
               Container(
-                height: 120,
+                height: 90,
                 child: Consumer<ProductProvider>(
                     builder: (context,provider,child){
                       return
-                        ListView.separated(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: cat[index]['color'].withOpacity(0.1),
-                                      borderRadius: BorderRadius.circular(16),
-                                      border: Border.all(
-                                          width: 2, color: cat[index]['color'].withOpacity(0.7))),
-                                  child: Column(
-                                    children: [
-                                      GestureDetector(
-                                        child: Container(
-                                          width: screensize * 0.28,
-                                          height: screensize * 0.22,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  fit: BoxFit.fill,
-                                                  image: AssetImage(cat[index]['imagepath']))),
+                        Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: ListView.separated(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: (){
+                                    Navigator.pushNamed(context, CategoryPage.routeName);
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    width: 80,
+                                    decoration: BoxDecoration(
+                                        color: cat[index]['color'].withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(width: 2, color: cat[index]['color'].withOpacity(0.7))),
+                                    child: Column(
+                                      children: [
+                                        GestureDetector(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Container(
+                                              height: screensize * 0.12,
+                                              width: screensize * 0.15,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      fit: BoxFit.fill,
+                                                      image: AssetImage(cat[index]['imagepath']))),
+                                            ),
+                                          ),
                                         ),
-                                        onTap: (){
-                                          // cat[index]['cattext']=='Tshirt' || cat[index]['cattext']=='Pant'||
-                                          //     cat[index]['cattext']=='Pants'||
-                                          //     cat[index]['cattext']=='Hoodie'||
-                                          //     cat[index]['cattext']=='Shoes'
-                                          //     ? shopcat='Fashion': shopcat='Food';
-                                          shopcat='Fashion';
-
-
-                                          Navigator.pushNamed(context, ShopsCatProPage.routeName);
-                                        },
-                                      ),
-                                      Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
-
-                                    ],
+                                        Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) => SizedBox(
-                              width: 10,
-                            ),
-                            itemCount: cat.length);}),
+                                );
+                              },
+                              separatorBuilder: (context, index) => SizedBox(
+                                width: 10,
+                              ),
+                              itemCount: cat.length),
+                        );}),
               ),
               SizedBox(height: 12,),
               GridView.builder(
@@ -156,7 +154,7 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                       childAspectRatio: 3 / 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      mainAxisExtent: 200
+                      mainAxisExtent: 260
 
                   ),
                   shrinkWrap: true,
@@ -172,10 +170,18 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                         },
                         child: Container(
                           decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 0.2,
+                                    spreadRadius: 0.1
+                                )
+                              ],
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -185,17 +191,79 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                                     fit: BoxFit.cover
                                 ),
                               ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('${shopproductList[index].productName}',
+                                      style:TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 4.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: Colors.amber[600]
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Row(
+                                            children: [
+                                              Text('${shopproductList[index].productRating}',
+                                                style:TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold
+                                                ),),
+                                              Icon(Icons.star,size: 14,color: Colors.white,)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
                               SizedBox(height: 5),
-                              Text('${shopproductList[index].productName}',
-                                style:TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold
-                                ),),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('${shopproductList[index].productCategory}',
+                                  style:TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black26
+                                  ),),
+                              ),
                               SizedBox(height: 5),
-                              Text('${shopproductList[index].productPrice} tk',
-                                style:TextStyle(
-                                  fontSize: 18,
-                                ),),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('BDT - ${shopproductList[index].productPrice} tk',
+                                  style:TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('${shopproductList[index].shopName}',
+                                      style:TextStyle(
+                                        fontSize: 14,
+                                      ),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Icon(Icons.verified,size: 20,color: Colors.blue,),
+                                    )
+                                  ],
+                                ),
+                              ),
 
                             ],
                           ),

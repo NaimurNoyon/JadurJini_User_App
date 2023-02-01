@@ -17,7 +17,6 @@ import 'package:jadurjini_user/provider/product_provider.dart';
 import 'package:jadurjini_user/provider/shopprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'demo.dart';
 
 void main() async {
@@ -52,7 +51,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
         ),
-        initialRoute: CartPage.routeName,
+        initialRoute: FirstPage.routeName,
         routes: {
           FirstPage.routeName: (context)=>FirstPage(),
           HomePage.routeName: (context)=>HomePage(),

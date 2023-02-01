@@ -24,36 +24,29 @@ List imageList = [
 
 List<Map<String, dynamic>> cat = [
   {
-    'cattext': 'Hoodie',
+    'cattext': 'Fashion',
     'imagepath': 'assets/images/hoodie.png',
     'color': Colors.red
   },
   {
-    'cattext': 'Tshirt',
-    'imagepath': 'assets/images/itshirt.png',
+    'cattext': 'Food',
+    'imagepath': 'assets/images/food.png',
     'color': Colors.deepPurple
   },
   {
-    'cattext': 'Pants',
-    'imagepath': 'assets/images/pant.png',
-    'color': Colors.pink
-  },
-  {
-    'cattext': 'Shoes',
-    'imagepath': 'assets/images/shoe.png',
+    'cattext': 'Fruits',
+    'imagepath': 'assets/images/fruits.png',
     'color': Colors.teal
   },
   {
-    'cattext': 'Vegetable',
-    'imagepath': 'assets/images/veg.png',
-    'color': Colors.cyan
+    'cattext': 'Medicine',
+    'imagepath': 'assets/images/shoe.png',
+    'color': Colors.pink
   },
-  {
-    'cattext': 'Foods',
-    'imagepath': 'assets/images/food.png',
-    'color': Colors.purple
-  },
+
+
 ];
+
 late ProductModel selectedproduct;
 class _HomePageState extends State<HomePage> {
 
@@ -201,33 +194,35 @@ class _HomePageState extends State<HomePage> {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return Container(
-                                height: 30,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    color: cat[index]['color'].withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(width: 2, color: cat[index]['color'].withOpacity(0.7))),
-                                child: Column(
-                                  children: [
-                                    GestureDetector(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Container(
-                                          height: screensize * 0.12,
-                                          width: screensize * 0.15,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  fit: BoxFit.fill,
-                                                  image: AssetImage(cat[index]['imagepath']))),
+                              return InkWell(
+                                onTap: (){
+                                  Navigator.pushNamed(context, CategoryPage.routeName);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                      color: cat[index]['color'].withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(width: 2, color: cat[index]['color'].withOpacity(0.7))),
+                                  child: Column(
+                                    children: [
+                                      GestureDetector(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Container(
+                                            height: screensize * 0.12,
+                                            width: screensize * 0.15,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    fit: BoxFit.fill,
+                                                    image: AssetImage(cat[index]['imagepath']))),
+                                          ),
                                         ),
                                       ),
-                                      onTap: (){
-                                        Navigator.pushNamed(context, CategoryPage.routeName);
-                                      },
-                                    ),
-                                    Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
-                                  ],
+                                      Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
