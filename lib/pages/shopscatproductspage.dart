@@ -9,7 +9,7 @@ import '../provider/product_provider.dart';
 import 'home_page.dart';
 
 class ShopsCatProPage extends StatefulWidget {
-  static const String routename='/shopsproductbycat';
+  static const String routeName='/shopsproductbycat';
   const ShopsCatProPage({Key? key}) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class _ShopsCatProPageState extends State<ShopsCatProPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(onPressed: (){Navigator.pushReplacementNamed(context, ShopPage.routename);}, icon: Icon(Icons.keyboard_backspace_sharp,color: Colors.black,size: 30,)),
+        leading: IconButton(onPressed: (){Navigator.pushReplacementNamed(context, ShopPage.routeName);}, icon: Icon(Icons.keyboard_backspace_sharp,color: Colors.black,size: 30,)),
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

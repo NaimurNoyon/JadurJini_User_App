@@ -15,6 +15,7 @@ class _ActivityPageState extends State<ActivityPage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+        title: Text('Activity',style:TextStyle(color: Colors.black)),
         actions: [
           IconButton(onPressed: (){}, icon: Icon(Icons.shopping_bag,color: Colors.black,size: 30,))
         ],

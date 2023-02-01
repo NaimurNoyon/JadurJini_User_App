@@ -27,8 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding:  EdgeInsets.all(100),
+          Center(
             child: Container(
               height: 200,
               width: 200,

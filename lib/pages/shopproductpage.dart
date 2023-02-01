@@ -12,7 +12,7 @@ import '../provider/product_provider.dart';
 import 'home_page.dart';
 
 class ShopPage extends StatefulWidget {
-  static const String routename='/shoppage';
+  static const String routeName='/shoppage';
   const ShopPage({Key? key}) : super(key: key);
 
   @override
@@ -133,7 +133,7 @@ Text(Shopname,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: C
                                           shopcat='Fashion';
 
 
-                                          Navigator.pushNamed(context, ShopsCatProPage.routename);
+                                          Navigator.pushNamed(context, ShopsCatProPage.routeName);
                                         },
                                       ),
                                       Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),

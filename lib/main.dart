@@ -7,6 +7,7 @@ import 'package:jadurjini_user/pages/home_page.dart';
 import 'package:jadurjini_user/pages/loginpage.dart';
 import 'package:jadurjini_user/pages/productdetail.dart';
 import 'package:jadurjini_user/pages/profilepage.dart';
+import 'package:jadurjini_user/pages/shipping_address.dart';
 import 'package:jadurjini_user/pages/shopproductpage.dart';
 import 'package:jadurjini_user/pages/shopscatproductspage.dart';
 import 'package:jadurjini_user/pages/signuppage.dart';
@@ -51,7 +52,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
         ),
-        initialRoute: FirstPage.routeName,
+        initialRoute: CartPage.routeName,
         routes: {
           FirstPage.routeName: (context)=>FirstPage(),
           HomePage.routeName: (context)=>HomePage(),
@@ -62,9 +63,10 @@ class MyApp extends StatelessWidget {
           SignUpPage.routeName: (context)=>SignUpPage(),
           CategoryPage.routeName: (context)=>CategoryPage(),
           ProductDetailPage.routeName: (context)=>ProductDetailPage(),
-          ShopPage.routename: (context)=>ShopPage(),
-          ShopsCatProPage.routename: (context)=>ShopsCatProPage(),
-          CartPage.routename: (context)=>CartPage(),
+          ShopPage.routeName: (context)=>ShopPage(),
+          ShopsCatProPage.routeName: (context)=>ShopsCatProPage(),
+          CartPage.routeName: (context)=>CartPage(),
+          ShippingAddress.routeName: (context)=>ShippingAddress(),
         },
       ),
     );

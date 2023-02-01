@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:jadurjini_user/pages/first_page.dart';
+import 'package:jadurjini_user/pages/shipping_address.dart';
 import 'package:jadurjini_user/provider/cartprovider.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/colors.dart';
 
 class CartPage extends StatefulWidget {
-  static const String routename='/cartpage';
+  static const String routeName='/cartpage';
   const CartPage({Key? key}) : super(key: key);
 
   @override
@@ -62,7 +63,7 @@ class _CartPageState extends State<CartPage> {
                 itemBuilder: (context, index) {
               final cart = provider.cartlist[index];
               return Container(
-                height: sch/5,
+                height: sch/4,
                 width: scw-40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -72,18 +73,18 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     ClipRRect(
                         borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
-                        child: Image.network(provider.cartlist[index].image,height: sch/5,width: scw/2-40,fit: BoxFit.cover,)),
+                        child: Image.network(provider.cartlist[index].image,height: sch/6,width: scw/2-40,fit: BoxFit.cover,)),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${provider.cartlist[index].product_name}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 26),),
-                        SizedBox(height: 3,),
-                        Text('BDT ${provider.cartlist[index].price}',style: TextStyle(fontWeight: FontWeight.w300,fontSize: 21)),
-                        SizedBox(height: 3,),
-                        Text('Size ${provider.cartlist[index].size}',style: TextStyle(fontSize: 20)),
-                        SizedBox(height: 3,),
-                        Text('Price ${provider.cartlist[index].quantity*provider.cartlist[index].price}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 21)),
+                        Text('${provider.cartlist[index].product_name}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                        SizedBox(height: 5,),
+                        Text('BDT ${provider.cartlist[index].price}',style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)),
+                        SizedBox(height: 5,),
+                        Text('Size ${provider.cartlist[index].size}',style: TextStyle(fontSize: 15)),
+                        SizedBox(height: 5,),
+                        Text('Price ${provider.cartlist[index].quantity*provider.cartlist[index].price}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
                       ],
                     ),
                     Column(
@@ -96,8 +97,8 @@ class _CartPageState extends State<CartPage> {
                             provider.updatecartquantity(index+1, q);
                             provider.updatecartprice(index+1, q*provider.cartlist[index].price);
                           });
-                        }, child: Text('+',style: TextStyle(color:Colors.black,fontSize: 23,fontWeight: FontWeight.w800),)),
-                        TextButton(onPressed: (){}, child: Text('${provider.cartlist[index].quantity}',style: TextStyle(color:Colors.black,fontSize: 22,fontWeight: FontWeight.w200),)),
+                        }, child: Text('+',style: TextStyle(color:Colors.black,fontSize: 20,fontWeight: FontWeight.w800),)),
+                        TextButton(onPressed: (){}, child: Text('${provider.cartlist[index].quantity}',style: TextStyle(color:Colors.black,fontSize: 20,fontWeight: FontWeight.w200),)),
                         TextButton(onPressed: (){
                           setState(() {
                             int q=provider.cartlist[index].quantity;
@@ -109,7 +110,7 @@ class _CartPageState extends State<CartPage> {
 
                           });
                         }, child:
-                        Text('-',style: TextStyle(color:Colors.black,fontSize: 23,fontWeight: FontWeight.w800),))
+                        Text('-',style: TextStyle(color:Colors.black,fontSize: 20,fontWeight: FontWeight.w800),))
                       ],
                     )
                   ],
@@ -144,7 +145,9 @@ class _CartPageState extends State<CartPage> {
                     padding: EdgeInsets.zero,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25))),
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, ShippingAddress.routeName);
+                },
                 child: Ink(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),

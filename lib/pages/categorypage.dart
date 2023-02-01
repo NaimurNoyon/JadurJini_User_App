@@ -105,7 +105,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                    onTap: (){
                                      Shopname=ShopList[index].shopName!;
                                      Shopad=ShopList[index].shopLocation!;
-                                     Navigator.pushNamed(context, ShopPage.routename);
+                                     Navigator.pushNamed(context, ShopPage.routeName);
                                    },
                                    child: Container(
                                      child: Stack(

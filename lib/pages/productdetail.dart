@@ -30,7 +30,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         backgroundColor: Colors.white,
         actions: [
           IconButton(onPressed: (){
-            Navigator.pushNamed(context, CartPage.routename);
+            Navigator.pushNamed(context, CartPage.routeName);
           }, icon: Icon(Icons.shopping_bag,color: Colors.black,size: 30,))
         ],
       ),

@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jadurjini_user/models/product_model.dart';
-import 'package:jadurjini_user/pages/cartpage.dart';
 import 'package:jadurjini_user/pages/categorypage.dart';
 import 'package:jadurjini_user/pages/loginpage.dart';
 import 'package:jadurjini_user/pages/productdetail.dart';
@@ -50,8 +49,8 @@ List<Map<String, dynamic>> cat = [
     'color': Colors.cyan
   },
   {
-    'cattext': 'Pants',
-    'imagepath': 'food.png',
+    'cattext': 'Foods',
+    'imagepath': 'assets/images/food.png',
     'color': Colors.purple
   },
 ];
@@ -84,8 +83,8 @@ class _HomePageState extends State<HomePage> {
                 PopupMenuItem<int>(
                   value: 0,
                   child: TextButton(
-                      onPressed: null,
-                      child: Text('Profile',style: TextStyle(fontSize: 17,color: Colors.black),),
+                    onPressed: null,
+                    child: Text('Profile',style: TextStyle(fontSize: 17,color: Colors.black),),
                   ),
                 ),
 
@@ -98,13 +97,13 @@ class _HomePageState extends State<HomePage> {
                 ),
 
                 PopupMenuItem<int>(
-                  value: 2,
-                  child: TextButton(
-                    onPressed: (){
-                      Navigator.pushReplacementNamed(context, LoginPage.routeName);
-                    },
-                    child: Text('Login',style: TextStyle(fontSize: 17,color: Colors.black),),
-                  )
+                    value: 2,
+                    child: TextButton(
+                      onPressed: (){
+                        Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                      },
+                      child: Text('Login',style: TextStyle(fontSize: 17,color: Colors.black),),
+                    )
                 ),
               ];
             },
@@ -128,125 +127,130 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        actions:  [
-          IconButton(onPressed: (){
-            Navigator.pushNamed(context, CartPage.routename);
-          }, icon: Icon(Icons.shopping_bag,color: Colors.black,)),
+        actions: const [
+          Icon(Icons.shopping_bag,color: Colors.black,),
         ],
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CarouselSlider(
-              items: [
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/offerone.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/offerthree.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/offerfour.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-              options: CarouselOptions(
-                height: 175.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16 / 9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.8,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Explore by category",
-                style: TextStyle(
-                  fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-    Container(
-      height: 120,
-      child: Consumer<ProductProvider>(
-      builder: (context,provider,child){
-      return
-              ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: cat[index]['color'].withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                              width: 2, color: cat[index]['color'].withOpacity(0.7))),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            child: Container(
-                              width: screensize * 0.28,
-                              height: screensize * 0.22,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: AssetImage(cat[index]['imagepath']))),
-                            ),
-                            onTap: (){
-                              Navigator.pushNamed(context, CategoryPage.routeName);
-                            },
-                          ),
-                          Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
-
-                        ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CarouselSlider(
+                items: [
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/offersix.jpg"),
+                        fit: BoxFit.cover,
                       ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: 10,
+                    ),
                   ),
-                  itemCount: cat.length);}),
-    ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Order Again",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/offerseven.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/offereight.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+                options: CarouselOptions(
+                  height: 175.0,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.8,
                 ),
               ),
-            ),
-            Container(
-              height: 230,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Explore by category",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              Container(
+                height: 90,
+                child: Consumer<ProductProvider>(
+                    builder: (context,provider,child){
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: ListView.separated(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 30,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: cat[index]['color'].withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(width: 2, color: cat[index]['color'].withOpacity(0.7))),
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Container(
+                                          height: screensize * 0.12,
+                                          width: screensize * 0.15,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: AssetImage(cat[index]['imagepath']))),
+                                        ),
+                                      ),
+                                      onTap: (){
+                                        Navigator.pushNamed(context, CategoryPage.routeName);
+                                      },
+                                    ),
+                                    Text(cat[index]['cattext'],style: TextStyle(color: cat[index]['color'],fontSize: 15)),
+                                  ],
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) => SizedBox(
+                              width: 10,
+                            ),
+                            itemCount: cat.length),
+                      );}),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Order Again",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              Container(
+                height: 120,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
                   //physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (context, index){
@@ -254,131 +258,241 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 0.5,
+                                  spreadRadius: 0.1
+                              )
+                            ],
                             borderRadius: BorderRadius.circular(20),
                             color: Colors.white
                         ),
-                        child: Column(
+                        child: Row(
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.network(
-                                '${productList[index].productImage}',
-                                height: 120,
-                                fit: BoxFit.cover
+                            ClipRRect(
+                              borderRadius: BorderRadius.horizontal(left: Radius.circular(20)),
+                              child: Image.network(
+                                  '${productList[index].productImage}',
+                                  height: 120,
+                                  width: 120,
+                                  fit: BoxFit.cover
+                              ),
                             ),
                             SizedBox(height: 5),
-                            Text('${productList[index].productName}',
-                              style:TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                            SizedBox(height: 5),
-                            Text('${productList[index].productPrice} tk',
-                              style:TextStyle(
-                                fontSize: 18,
-                              ),),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 8,),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                  child: Text('${productList[index].productName}',
+                                    style:TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                                SizedBox(height: 5,),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                  child: Text('BDT - ${productList[index].productPrice} tk',
+                                    style:TextStyle(
+                                      fontSize: 16,
+                                    ),),
+                                ),
+                                SizedBox(height: 15),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0,right: 8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('${productList[index].shopName}',
+                                        style:TextStyle(
+                                          fontSize: 14,
+                                        ),),
+                                      SizedBox(width: 2,),
+                                      Icon(Icons.verified,color: Colors.blue,size: 14,)
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
 
                           ],
                         ),
                       ),
                     );
                   },
-                 separatorBuilder: (context, index) => SizedBox(
-                width: 10,),
-                itemCount: productList.length,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Offers",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+                  separatorBuilder: (context, index) => SizedBox(
+                    width: 10,),
+                  itemCount: productList.length,
                 ),
               ),
-            ),
-            CarouselSlider(
-              items: [
-                Container(
-                  margin: EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/offerone.jpg"),
-                      fit: BoxFit.cover,
-                    ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Offers",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-              ],
-              options: CarouselOptions(
-                scrollPhysics: const BouncingScrollPhysics(),
-                autoPlay: false,
-                aspectRatio: 2,
-                viewportFraction: 1,
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text("Recommendations",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 3 / 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    mainAxisExtent: 200
-
-                ),
-              shrinkWrap: true,
-                itemCount: productList.length,
-                itemBuilder: (context, index){
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: (){
-                        selectedproduct=productList[index];
-                        Navigator.pushNamed(context, ProductDetailPage.routeName);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white
-                        ),
-                        child: Column(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                              child: Image.network(
-                                  '${productList[index].productImage}',
-                                  height: 120,
-                                  fit: BoxFit.cover
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text('${productList[index].productName}',
-                              style:TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold
-                            ),),
-                            SizedBox(height: 5),
-                            Text('${productList[index].productPrice} tk',
-                              style:TextStyle(
-                                  fontSize: 18,
-                              ),),
-
-                          ],
-                        ),
+              CarouselSlider(
+                items: [
+                  Container(
+                    margin: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/offersix.jpg"),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  );
-                }
-            )
-          ]),
+                  ),
+                ],
+                options: CarouselOptions(
+                  scrollPhysics: const BouncingScrollPhysics(),
+                  autoPlay: false,
+                  aspectRatio: 2,
+                  viewportFraction: 1,
+                ),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Recommendations",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      mainAxisExtent: 260
+
+                  ),
+                  shrinkWrap: true,
+                  itemCount: productList.length,
+                  itemBuilder: (context, index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: (){
+                          selectedproduct=productList[index];
+                          Navigator.pushNamed(context, ProductDetailPage.routeName);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 0.2,
+                                    spreadRadius: 0.1
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                                child: Image.network(
+                                    '${productList[index].productImage}',
+                                    height: 120,
+                                    fit: BoxFit.cover
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('${productList[index].productName}',
+                                      style:TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 4.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            color: Colors.amber[600]
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Row(
+                                            children: [
+                                              Text('${productList[index].productRating}',
+                                                style:TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold
+                                                ),),
+                                              Icon(Icons.star,size: 14,color: Colors.white,)
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('${productList[index].productCategory}',
+                                  style:TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black26
+                                  ),),
+                              ),
+                              SizedBox(height: 5),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text('BDT - ${productList[index].productPrice} tk',
+                                  style:TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold
+                                  ),),
+                              ),
+                              SizedBox(height: 10),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('${productList[index].shopName}',
+                                      style:TextStyle(
+                                        fontSize: 14,
+                                      ),),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: Icon(Icons.verified,size: 20,color: Colors.blue,),
+                                    )
+                                  ],
+                                ),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+              )
+            ]),
       ),
     );
   }
